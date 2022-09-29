@@ -1,28 +1,28 @@
-public class Lista<Tipo>{
+public class List<Tipo>{
     private No<Tipo> prim;
     private No<Tipo> ult;
-    private int tamanho;
+    private int size;
 
-    Lista(){
+    List(){
         prim = null;
         ult = null;
-        tamanho = 1;
+        size = 1;
     }
 
-    boolean listaVazia(){
+    boolean empty(){
         return prim == null;
     }
 
-    int tamanho(){
-        return tamanho;
+    int size(){
+        return size;
     }
 
-    void add_inicio(Tipo valor){
+    void pushBack(Tipo valor){
         No<Tipo> novo = new No<>(valor);
 
         novo.prox = prim;
 
-        if(listaVazia()){
+        if(empty()){
             ult = novo;
         }
         else{
@@ -30,15 +30,15 @@ public class Lista<Tipo>{
         }
 
         prim = novo;
-        tamanho++;
+        size++;
     }
 
-    void add_final(Tipo valor){
+    void pushFront(Tipo valor){
         No<Tipo> novo = new No<>(valor);
 
         novo.anter = ult;
 
-        if(listaVazia()){
+        if(empty()){
             prim = novo;
         }
         else{
@@ -46,13 +46,13 @@ public class Lista<Tipo>{
         }
 
         ult = novo;
-        tamanho++;
+        size++;
     }
 
-    void imprime(){
+    void show(){
         System.out.print("[");
 
-        if(!listaVazia()){
+        if(!empty()){
             No<Tipo> aux = prim;
 
             System.out.print(aux.valor);
@@ -65,5 +65,15 @@ public class Lista<Tipo>{
         }
 
         System.out.println("]");
+    }
+
+    Tipo getByIndex(int index){
+        No<Tipo> aux = prim;
+
+        while(index-- > 0){
+            aux = aux.prox;
+        }
+
+        return aux.valor;
     }
 }
