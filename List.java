@@ -6,10 +6,10 @@ public class List<Type>{
     List(){
         head = null;
         tail = null;
-        size = 1;
+        size = 0;
     }
 
-    boolean listEmpt(){
+    boolean isEmpty(){
         return head == null;
     }
 
@@ -17,12 +17,12 @@ public class List<Type>{
         return size;
     }
 
-    void pushBack(Type valor){
-        Node<Type> newHead = new Node<>(valor);
+    void pushBack(Type value){
+        Node<Type> newHead = new Node<>(value);
 
         newHead.next = head;
 
-        if(listEmpt()){
+        if(isEmpty()){
             tail = newHead;
         }
         else{
@@ -33,33 +33,62 @@ public class List<Type>{
         size++;
     }
 
-    void pushFront(Type valor){
-        Node<Type> novo = new Node<>(valor);
+    void pushFront(Type value){
+        Node<Type> newTail = new Node<>(value);
 
-        novo.previous = tail;
+        newTail.previous = tail;
 
-        if(listEmpt()){
-            head = novo;
+        if(isEmpty()){
+            head = newTail;
         }
         else{
-            tail.next = novo;
+            tail.next = newTail;
         }
 
-        tail = novo;
+        tail = newTail;
         size++;
     }
 
-    void show(){
+    void removeBack(){
+        if(!isEmpty()){
+            if(head == tail){
+                tail = null;
+            }
+            else{
+                head.next.previous = null;
+            }
+
+            head = head.next;
+            size--;
+        }
+    }
+
+    void removeFront(){
+        if(!isEmpty()){
+            if(tail == head){
+                head = null;
+            }
+            else{
+                tail.previous.next = null;
+            }
+
+            tail = tail.previous;
+            size--;
+        }
+    }
+
+
+    void showList(){
         System.out.print("[");
 
-        if(!listEmpt()){
+        if(!isEmpty()){
             Node<Type> aux = head;
 
-            System.out.print(aux.valor);
+            System.out.print(aux.value);
             aux = aux.next;
 
             while(aux != null){
-                System.out.print(", " + aux.valor);
+                System.out.print(", " + aux.value);
                 aux = aux.next;
             }
         }
@@ -67,13 +96,23 @@ public class List<Type>{
         System.out.println("]");
     }
 
-    Type getByIndex(int index){
-        Node<Type> aux = head;
+    Node<Type> getHead(){
+        return head;
+    }
 
-        while(index-- > 0){
-            aux = aux.next;
+    Node<Type> getTail(){
+        return tail;
+    }
+
+    Node<Type> getByIndex(int index){
+        Node<Type> aux = null;
+
+        if(index >= 0 && index < size){
+            while(index-- > 0){
+                aux = aux.next;
+            }
         }
-
-        return aux.valor;
+        
+        return aux;
     }
 }

@@ -1,5 +1,5 @@
 public class Node<Type>{
-    Type valor;
+    Type value;
     Node<Type> next;
     Node<Type> previous;
 
@@ -8,11 +8,9 @@ public class Node<Type>{
         previous = null;
     }
 
-    Node(Type valor){
-        this.valor = valor;
+    Node(Type value){
+        this.value = value;
         next = null;
         previous = null;
     }
-
-    
 }
