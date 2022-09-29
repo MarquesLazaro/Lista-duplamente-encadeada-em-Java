@@ -4,8 +4,8 @@ public class No<Tipo>{
     No<Tipo> anter;
 
     No(){
-        prox = null;
-        anter = null;
+        // prox = null;
+        // anter = null;
     }
 
     No(Tipo valor){
