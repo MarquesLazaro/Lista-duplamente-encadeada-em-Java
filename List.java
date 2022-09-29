@@ -77,6 +77,12 @@ public class List<Type>{
         }
     }
 
+    void clear(){
+        while(!isEmpty()){
+            removeBack();
+        }
+    }
+
 
     void showList(){
         System.out.print("[");
@@ -107,12 +113,12 @@ public class List<Type>{
     Node<Type> getByIndex(int index){
         Node<Type> aux = null;
 
-        if(index >= 0 && index < size){
+        if(index < size){
+            aux = head;
             while(index-- > 0){
                 aux = aux.next;
             }
         }
-        
         return aux;
     }
 }
