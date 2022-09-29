@@ -1,77 +1,77 @@
-public class List<Tipo>{
-    private No<Tipo> prim;
-    private No<Tipo> ult;
+public class List<Type>{
+    private Node<Type> head;
+    private Node<Type> tail;
     private int size;
 
     List(){
-        prim = null;
-        ult = null;
+        head = null;
+        tail = null;
         size = 1;
     }
 
-    boolean empty(){
-        return prim == null;
+    boolean listEmpt(){
+        return head == null;
     }
 
     int size(){
         return size;
     }
 
-    void pushBack(Tipo valor){
-        No<Tipo> novo = new No<>(valor);
+    void pushBack(Type valor){
+        Node<Type> newHead = new Node<>(valor);
 
-        novo.prox = prim;
+        newHead.next = head;
 
-        if(empty()){
-            ult = novo;
+        if(listEmpt()){
+            tail = newHead;
         }
         else{
-            prim.anter = novo;
+            head.previous = newHead;
         }
 
-        prim = novo;
+        head = newHead;
         size++;
     }
 
-    void pushFront(Tipo valor){
-        No<Tipo> novo = new No<>(valor);
+    void pushFront(Type valor){
+        Node<Type> novo = new Node<>(valor);
 
-        novo.anter = ult;
+        novo.previous = tail;
 
-        if(empty()){
-            prim = novo;
+        if(listEmpt()){
+            head = novo;
         }
         else{
-            ult.prox = novo;
+            tail.next = novo;
         }
 
-        ult = novo;
+        tail = novo;
         size++;
     }
 
     void show(){
         System.out.print("[");
 
-        if(!empty()){
-            No<Tipo> aux = prim;
+        if(!listEmpt()){
+            Node<Type> aux = head;
 
             System.out.print(aux.valor);
-            aux = aux.prox;
+            aux = aux.next;
 
             while(aux != null){
                 System.out.print(", " + aux.valor);
-                aux = aux.prox;
+                aux = aux.next;
             }
         }
 
         System.out.println("]");
     }
 
-    Tipo getByIndex(int index){
-        No<Tipo> aux = prim;
+    Type getByIndex(int index){
+        Node<Type> aux = head;
 
         while(index-- > 0){
-            aux = aux.prox;
+            aux = aux.next;
         }
 
         return aux.valor;
