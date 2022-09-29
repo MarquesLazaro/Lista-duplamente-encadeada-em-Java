@@ -6,7 +6,7 @@ public class Lista<Tipo>{
     Lista(){
         prim = null;
         ult = null;
-        tamanho = 0;
+        tamanho = 1;
     }
 
     boolean listaVazia(){
