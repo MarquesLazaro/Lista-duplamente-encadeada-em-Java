@@ -2,7 +2,6 @@ public class No<Tipo>{
     Tipo valor;
     No<Tipo> prox;
     No<Tipo> anter;
-    int indice = (anter != null) ? (anter.indice + 1) : 0;
 
     No(){
         prox = null;
@@ -14,4 +13,6 @@ public class No<Tipo>{
         prox = null;
         anter = null;
     }
+
+    
 }
